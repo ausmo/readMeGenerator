@@ -1,11 +1,21 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 
+//lines 6 through 16 are nice looking badges that will appear when the user selects a license
 
+function generateBadgeForLicense(license) {
+  if (license === "MIT") {
+    return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+  } else if (license === "BSD") {
+    return "[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)";
+  } else if (license === "CCO") {
+    return "[![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)";
+  } else {
+    return "[![License: IPL 1.0](https://img.shields.io/badge/License-IPL_1.0-blue.svg)](https://opensource.org/licenses/IPL-1.0)";
+  }
+}
 
-// TODO: Include packages needed for this application
-
-// TODO: Create an array of questions for user input
+// the following is a template for the readme
 
 let readMeText = (answers) => {
   console.log(answers);
@@ -20,7 +30,7 @@ ${answers.description}
 * [Contact](#contact)
 
 ## License
-${generateBadgeForLicense()}
+${generateBadgeForLicense(answers.license)}
 
 ## contributions
 ${answers.contributors}
@@ -30,12 +40,13 @@ ${answers.usage}
 
 ## contact
 ${answers.contact}
+
+## gitHub
+[Github](https://github.com/${answers.GitHub})
 `;
 };
 
-// fs.writeFile("readme.md", readMeText, function (err) {
-//   if (err) console.log(err);
-// });
+// these are the questions that will appear in the terminal
 
 const questions = [
   {
@@ -59,7 +70,7 @@ const questions = [
     message: "What are the uses of this application?",
   },
   {
-    type: "checkbox",
+    type: "list",
     message: "licenses if any?",
     name: "licenses",
     choices: ["MIT", "BSD", "CCO", "IBM"],
@@ -70,12 +81,13 @@ const questions = [
     name: "contact",
     message: "What contact info would you like to display?",
   },
+  {
+    type: "input",
+    name: "GitHub",
+    message: "What is your Github user name?",
+  },
 ];
 
-// // TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
-
-// // TODO: Create a function to initialize app
 function init() {
   inquirer.prompt(questions).then((answers) => {
     fs.writeFile("readme.md", readMeText(answers), function (err) {
@@ -84,5 +96,5 @@ function init() {
   });
 }
 
-// // Function call to initialize app
+//Function call to initialize app
 init();
