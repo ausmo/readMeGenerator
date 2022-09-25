@@ -4,7 +4,7 @@
 I created this readMe generator to make a good-looking readMe file.
 In the terminal, the user is able to see questions I provide, answer the questions, and have a pretty readMe file generated for them.
 
-https://drive.google.com/file/d/1HI-Z4Oi7xmy5HawRCRo8wHQJJYExtnJn/view
+https://drive.google.com/file/d/1HI-Z4Oi7xmy5HawRCRo8wHQJJYExtnJn/view?usp=sharing
 
 ## Table of Contents
 * [Contributing](#contributions)
